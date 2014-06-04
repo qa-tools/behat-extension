@@ -10,7 +10,17 @@
 
 namespace evangelion1204\QAToolsExtension\Context;
 
+use evangelion1204\QAToolsExtension\QATools;
+
 interface QAToolsAwareContext
 {
 
+	/**
+	 * Set QA-Tools instance.
+	 *
+	 * @param QATools $qa_tools
+	 *
+	 * @return $this
+	 */
+	public function setQATools(QATools $qa_tools);
 }

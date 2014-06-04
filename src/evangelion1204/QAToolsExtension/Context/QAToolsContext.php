@@ -12,8 +12,37 @@ namespace evangelion1204\QAToolsExtension\Context;
 
 
 use Behat\Behat\Context\Context;
+use evangelion1204\QAToolsExtension\QATools;
 
-class QAToolsContext implements Context, QA
+class QAToolsContext implements Context, QAToolsAwareContext
 {
 
+	/**
+	 * @var QATools
+	 */
+	protected $qaTools;
+
+	public function setQATools(QATools $qa_tools)
+	{
+		$this->qaTools = $qa_tools;
+
+		return $this;
+	}
+
+	/**
+	 * @BeforeStep
+	 */
+	public function initSession()
+	{
+		$this->qaTools->init();
+	}
+
+	/**
+	 * @Given /^the user visits the "([^"]+)"$/
+	 */
+	public function visitPage($page)
+	{
+		$page = $this->qaTools->getPage($page);
+		$page->open();
+	}
 }

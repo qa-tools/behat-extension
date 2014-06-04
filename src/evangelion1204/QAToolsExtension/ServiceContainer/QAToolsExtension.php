@@ -10,16 +10,26 @@
 
 namespace evangelion1204\QAToolsExtension\ServiceContainer;
 
+use Behat\Behat\Context\ServiceContainer\ContextExtension;
+use Behat\Mink\Mink;
 use Behat\Testwork\ServiceContainer\Extension;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
+use evangelion1204\QAToolsExtension\QATools;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 
 
 class QAToolsExtension implements Extension
 {
 
 	const INITIALIZER_CLASS = 'evangelion1204\\QAToolsExtension\\Context\\Initializer\\QAToolsInitializer';
+
+	/**
+	 * @var QATools
+	 */
+	protected $qaTools;
 
 	/**
 	 * {@inheritdoc}
@@ -44,8 +54,29 @@ class QAToolsExtension implements Extension
 	{
 		$builder
 			->children()
-				->scalarNode('base_url')
-					->defaultNull()
+				->arrayNode('qa_tools')
+					->children()
+						->scalarNode('base_url')
+							->defaultNull()
+						->end()
+					->end()
+				->end()
+				->arrayNode('namespace')
+					->children()
+						->scalarNode('pages')
+							->defaultNull()
+						->end()
+						->scalarNode('elements')
+							->defaultNull()
+						->end()
+					->end()
+				->end()
+				->arrayNode('users')
+					->prototype('array')
+						->children()
+							->scalarNode('firstname')->end()
+							->scalarNode('lastname')->end()
+						->end()
 				->end()
 			->end();
 	}
@@ -61,17 +92,16 @@ class QAToolsExtension implements Extension
 
 	protected function loadQATools(ContainerBuilder $container, array $config)
 	{
-
+		/** @var Mink $mink */
+		$mink = $container->get('mink');
+		$this->qaTools = new QATools($mink, $config);
 	}
 
 	protected function loadInitializer(ContainerBuilder $container)
 	{
-		$definition = new Definition(self::INITIALIZER_CLASS, array(
-			new Reference(self::MINK_ID),
-			'%mink.parameters%',
-		));
+		$definition = new Definition(self::INITIALIZER_CLASS, array($this->qaTools));
 		$definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
-		$container->setDefinition('mink.context_initializer', $definition);
+		$container->setDefinition('qa-tools.context_initializer', $definition);
 	}
 
 	/**

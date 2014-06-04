@@ -13,18 +13,20 @@ namespace evangelion1204\QAToolsExtension\Context\Initializer;
 use Behat\Behat\Context\Initializer\ContextInitializer;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Mink;
+use evangelion1204\QAToolsExtension\Context\QAToolsAwareContext;
+use evangelion1204\QAToolsExtension\QATools;
 
 class QAToolsInitializer implements ContextInitializer
 {
 
 	/**
-	 * @var Mink
+	 * @var QATools
 	 */
-	protected $mink;
+	protected $qaTools;
 
-	public function __construct(Mink $mink)
+	public function __construct(QATools $qa_tools)
 	{
-
+		$this->qaTools = $qa_tools;
 	}
 
 	public function initializeContext(Context $context)
@@ -33,6 +35,6 @@ class QAToolsInitializer implements ContextInitializer
 			return;
 		}
 
-		$context->setMink($this->mink);
+		$context->setQATools($this->qaTools);
 	}
 }

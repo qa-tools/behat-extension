@@ -27,7 +27,10 @@
         }
     ],
 	"autoload": {
-		"psr-0": { "evangelion1204\\QAToolsExtension": "src/" }
+		"psr-0": {
+			"evangelion1204\\QAToolsExtension": "src/",
+			"evangelion1204\\behat": "tests/"
+		}
 	},
 	"extra": {
         "branch-alias": {

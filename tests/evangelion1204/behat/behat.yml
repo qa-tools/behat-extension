@@ -12,4 +12,11 @@ default:
       selenium2: ~
 
     evangelion1204\QAToolsExtension:
-      base_url: 'http://de.be-staging.zlounge.org'
+      qa_tools:
+        base_url: 'http://google.de/'
+      namespace:
+        pages: evangelion1204\behat\pages
+      users:
+        test:
+          firstname: michael
+          lastname: geppert
