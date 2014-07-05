@@ -14,14 +14,23 @@ namespace evangelion1204\QAToolsExtension\Context;
 use Behat\Behat\Context\Context;
 use evangelion1204\QAToolsExtension\QATools;
 
-class QAToolsContext implements Context, QAToolsAwareContext
+class IQAToolsContext implements Context, IQAToolsAwareContext
 {
 
 	/**
+	 * QA-Tools instance.
+	 *
 	 * @var QATools
 	 */
 	protected $qaTools;
 
+	/**
+	 * Sets the QA-Tools instance.
+	 *
+	 * @param QATools $qa_tools QA-Tools instance.
+	 *
+	 * @return static
+	 */
 	public function setQATools(QATools $qa_tools)
 	{
 		$this->qaTools = $qa_tools;
@@ -30,19 +39,32 @@ class QAToolsContext implements Context, QAToolsAwareContext
 	}
 
 	/**
+	 * BeforeStep hook to init QA-Tools.
+	 *
 	 * @BeforeStep
+	 *
+	 * @return static
 	 */
 	public function initSession()
 	{
 		$this->qaTools->init();
+
+		return $this;
 	}
 
 	/**
+	 * Open the page with the given name.
+	 *
+	 * @param string $page Name of page.
+	 *
 	 * @Given /^the user visits the "([^"]+)"$/
+	 *
+	 * @return void
 	 */
 	public function visitPage($page)
 	{
 		$page = $this->qaTools->getPage($page);
 		$page->open();
 	}
+
 }

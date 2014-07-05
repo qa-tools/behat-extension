@@ -13,7 +13,7 @@ default:
 
     evangelion1204\QAToolsExtension:
       qa_tools:
-        base_url: 'http://google.de/'
+        base_url: 'http://localhost'
       namespace:
         pages: evangelion1204\behat\pages
       users:

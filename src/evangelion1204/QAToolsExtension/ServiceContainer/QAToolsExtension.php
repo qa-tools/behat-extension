@@ -10,6 +10,7 @@
 
 namespace evangelion1204\QAToolsExtension\ServiceContainer;
 
+
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Mink\Mink;
 use Behat\Testwork\ServiceContainer\Extension;
@@ -18,8 +19,6 @@ use evangelion1204\QAToolsExtension\QATools;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Reference;
-
 
 class QAToolsExtension implements Extension
 {
@@ -27,6 +26,8 @@ class QAToolsExtension implements Extension
 	const INITIALIZER_CLASS = 'evangelion1204\\QAToolsExtension\\Context\\Initializer\\QAToolsInitializer';
 
 	/**
+	 * QA-Tools instance.
+	 *
 	 * @var QATools
 	 */
 	protected $qaTools;
@@ -90,6 +91,14 @@ class QAToolsExtension implements Extension
 		$this->loadInitializer($container);
 	}
 
+	/**
+	 * Load and create QA-Tools.
+	 *
+	 * @param ContainerBuilder $container Given container builder.
+	 * @param array            $config    Config.
+	 *
+	 * @return void
+	 */
 	protected function loadQATools(ContainerBuilder $container, array $config)
 	{
 		/** @var Mink $mink */
@@ -97,6 +106,13 @@ class QAToolsExtension implements Extension
 		$this->qaTools = new QATools($mink, $config);
 	}
 
+	/**
+	 * Load initializer.
+	 *
+	 * @param ContainerBuilder $container Given container builder.
+	 *
+	 * @return void
+	 */
 	protected function loadInitializer(ContainerBuilder $container)
 	{
 		$definition = new Definition(self::INITIALIZER_CLASS, array($this->qaTools));
@@ -111,4 +127,6 @@ class QAToolsExtension implements Extension
 	{
 		echo 'process';
 	}
+
 }
+

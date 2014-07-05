@@ -1,31 +1,30 @@
 {
-    "name": "evangelion1204/BehatQAToolsExtension",
-    "description": "QA-Tools extension for Behat",
-    "type": "library",
-    "keywords": ["behat","bdd","page","qa-tools","PageObject","HtmlElements"],
-    "homepage": "https://github.com/evangelion1204/BehatQAToolsExtension",
-    "license": "BSD-3-Clause",
-    "require": {
-        "php": ">=5.3.1",
-        "behat/mink": "dev-master",
-        "behat/mink-extension": "*",
-        "aik099/qa-tools": "dev-master"
-    },
-    "minimum-stability": "dev",
+	"name": "evangelion1204/BehatQAToolsExtension",
+	"description": "QA-Tools extension for Behat",
+	"type": "library",
+	"keywords": ["behat","bdd","page","qa-tools","PageObject","HtmlElements"],
+	"homepage": "https://github.com/evangelion1204/BehatQAToolsExtension",
+	"license": "BSD-3-Clause",
+	"require": {
+		"php": ">=5.3.1",
+		"behat/mink": "dev-master",
+		"behat/mink-extension": "*",
+		"qa-tools/qa-tools": "dev-master"
+	},
+	"minimum-stability": "dev",
 	"config": {
 		"bin-dir": "bin/"
 	},
-    "require-dev": {
-        "aik099/coding-standard": "dev-master",
-        "behat/mink-selenium2-driver": "~1.1@dev",
-        "mockery/mockery": "~0.9"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/aik099/qa-tools"
-        }
-    ],
+	"require-dev": {
+		"aik099/coding-standard": "dev-master",
+		"mockery/mockery": "~0.9"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/qa-tools/qa-tools"
+		}
+	],
 	"autoload": {
 		"psr-0": {
 			"evangelion1204\\QAToolsExtension": "src/",
@@ -33,8 +32,8 @@
 		}
 	},
 	"extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    }
+		"branch-alias": {
+			"dev-master": "1.0-dev"
+		}
+	}
 }

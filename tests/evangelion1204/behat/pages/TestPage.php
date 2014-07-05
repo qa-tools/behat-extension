@@ -10,14 +10,37 @@
 
 namespace evangelion1204\behat\pages;
 
-use aik099\QATools\PageObject\Page;
+use QATools\QATools\HtmlElements\TypifiedPage;
+use QATools\QATools\PageObject\Element\WebElement;
 
 /**
  * Class TestPage
  *
- * @page-url('/')
+ * @page-url('http://test.qa-tools.io/tests/aik099/QATools/HtmlElementsLive/Element/')
  */
-class TestPage extends Page
+class TestPage extends TypifiedPage
 {
+
+	/**
+	 * Input elements.
+	 *
+	 * @var WebElement
+	 * @find-by('css' => '[name*=test]')
+	 */
+	protected $inputs;
+
+	/**
+	 * Test function.
+	 *
+	 * @return void
+	 */
+	public function enter()
+	{
+		$this->inputs->click();
+
+		foreach ( $this->inputs as $input ) {
+			$input->click();
+		}
+	}
 
 }
