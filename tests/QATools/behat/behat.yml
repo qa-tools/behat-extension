@@ -15,7 +15,7 @@ default:
       qa_tools:
         base_url: 'http://localhost'
       namespace:
-        pages: evangelion1204\behat\pages
+        pages: QATools\behat\pages
       users:
         test:
           firstname: michael

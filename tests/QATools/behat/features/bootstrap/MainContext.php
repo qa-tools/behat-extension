@@ -1,7 +1,6 @@
 <?php
 
-use evangelion1204\QAToolsExtension\Context\IQAToolsContext;
-use lounge\testing\Manager;
+use QATools\BehatExtension\Context\IQAToolsContext;
 
 class MainContext extends IQAToolsContext
 {
@@ -22,4 +21,5 @@ class MainContext extends IQAToolsContext
 	{
 		sleep($seconds);
 	}
+
 }

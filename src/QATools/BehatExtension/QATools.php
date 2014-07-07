@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of QAToolsExtension for Behat.
+ * This file is part of BehatExtension for Behat.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -8,7 +8,7 @@
  * @copyright Michael Geppert <evangelion1204@aol.com>
  */
 
-namespace evangelion1204\QAToolsExtension;
+namespace QATools\BehatExtension;
 
 
 use Behat\Mink\Mink;
@@ -38,7 +38,7 @@ class QATools
 	/**
 	 * The used page factory.
 	 *
-	 * @var PageFactory
+	 * @var IPageFactory
 	 */
 	protected $pageFactory;
 
@@ -76,7 +76,7 @@ class QATools
 	public function init()
 	{
 		$this->session = $this->mink->getSession();
-		$this->pageFactory = new TypifiedPageFactory($this->session, new Config($this->config['qa_tools']));
+		$this->pageFactory = $this->createPageFactory();
 
 		if ( isset($this->config['users']) ) {
 			foreach ( $this->config['users'] as $id => $user ) {
@@ -112,6 +112,16 @@ class QATools
 	public function getActivePage()
 	{
 		return $this->activePage;
+	}
+
+	/**
+	 * Creates a page factory.
+	 *
+	 * @return IPageFactory
+	 */
+	public function createPageFactory()
+	{
+		return new TypifiedPageFactory($this->session, new Config($this->config['qa_tools']));
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of QAToolsExtension for Behat.
+ * This file is part of BehatExtension for Behat.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -8,13 +8,13 @@
  * @copyright Michael Geppert <evangelion1204@aol.com>
  */
 
-namespace evangelion1204\QAToolsExtension\Context\Initializer;
+namespace QATools\BehatExtension\Context\Initializer;
 
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Initializer\ContextInitializer;
-use evangelion1204\QAToolsExtension\Context\IQAToolsAwareContext;
-use evangelion1204\QAToolsExtension\QATools;
+use QATools\BehatExtension\Context\IQAToolsAwareContext;
+use QATools\BehatExtension\QATools;
 
 class QAToolsInitializer implements ContextInitializer
 {

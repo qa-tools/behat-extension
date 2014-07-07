@@ -1,15 +1,14 @@
 {
-	"name": "evangelion1204/BehatQAToolsExtension",
+	"name": "qa-tools/behat-extension",
 	"description": "QA-Tools extension for Behat",
 	"type": "library",
 	"keywords": ["behat","bdd","page","qa-tools","PageObject","HtmlElements"],
-	"homepage": "https://github.com/evangelion1204/BehatQAToolsExtension",
+	"homepage": "https://github.com/qa-tools/behat-extension",
 	"license": "BSD-3-Clause",
 	"require": {
 		"php": ">=5.3.1",
-		"behat/mink": "dev-master",
 		"behat/mink-extension": "*",
-		"qa-tools/qa-tools": "dev-master"
+		"qa-tools/qa-tools": "*@dev"
 	},
 	"minimum-stability": "dev",
 	"config": {
@@ -19,21 +18,19 @@
 		"aik099/coding-standard": "dev-master",
 		"mockery/mockery": "~0.9"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/qa-tools/qa-tools"
-		}
-	],
 	"autoload": {
 		"psr-0": {
-			"evangelion1204\\QAToolsExtension": "src/",
-			"evangelion1204\\behat": "tests/"
+			"QATools\\BehatExtension": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-0": {
+			"QATools\\behat": "tests/"
 		}
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.0-dev"
+			"dev-master": "1.0.x-dev"
 		}
 	}
 }

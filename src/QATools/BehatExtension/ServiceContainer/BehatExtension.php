@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of QAToolsExtension for Behat.
+ * This file is part of BehatExtension for Behat.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -8,22 +8,22 @@
  * @copyright Michael Geppert <evangelion1204@aol.com>
  */
 
-namespace evangelion1204\QAToolsExtension\ServiceContainer;
+namespace QATools\BehatExtension\ServiceContainer;
 
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Mink\Mink;
 use Behat\Testwork\ServiceContainer\Extension;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
-use evangelion1204\QAToolsExtension\QATools;
+use QATools\BehatExtension\QATools;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
-class QAToolsExtension implements Extension
+class BehatExtension implements Extension
 {
 
-	const INITIALIZER_CLASS = 'evangelion1204\\QAToolsExtension\\Context\\Initializer\\QAToolsInitializer';
+	const INITIALIZER_CLASS = 'QATools\\BehatExtension\\Context\\Initializer\\QAToolsInitializer';
 
 	/**
 	 * QA-Tools instance.
