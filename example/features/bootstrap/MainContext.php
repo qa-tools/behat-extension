@@ -1,8 +1,8 @@
 <?php
 
-use QATools\BehatExtension\Context\IQAToolsContext;
+use QATools\BehatExtension\Context\QAToolsContext;
 
-class MainContext extends IQAToolsContext
+class MainContext extends QAToolsContext
 {
 	protected static $folder = __DIR__;
 

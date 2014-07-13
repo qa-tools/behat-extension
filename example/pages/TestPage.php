@@ -8,7 +8,7 @@
  * @copyright Michael Geppert <evangelion1204@aol.com>
  */
 
-namespace QATools\behat\pages;
+namespace pages;
 
 
 use QATools\QATools\HtmlElements\TypifiedPage;
@@ -17,7 +17,7 @@ use QATools\QATools\PageObject\Element\WebElement;
 /**
  * Class TestPage
  *
- * @page-url('http://test.qa-tools.io/tests/aik099/QATools/HtmlElementsLive/Element/')
+ * @page-url('/example/fixtures/')
  */
 class TestPage extends TypifiedPage
 {
@@ -26,7 +26,7 @@ class TestPage extends TypifiedPage
 	 * Input elements.
 	 *
 	 * @var WebElement
-	 * @find-by('css' => '[name*=test]')
+	 * @find-by('css' => 'input[name*=test]')
 	 */
 	protected $inputs;
 
@@ -38,10 +38,11 @@ class TestPage extends TypifiedPage
 	public function enter()
 	{
 		$this->inputs->click();
+	}
 
-		foreach ( $this->inputs as $input ) {
-			$input->click();
-		}
+	public function waitFor($timeout, $callback)
+	{
+		return ;
 	}
 
 }
