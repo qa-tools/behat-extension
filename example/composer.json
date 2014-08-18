@@ -1,0 +1,26 @@
+{
+	"name": "qa-tools/behat-extension-example",
+	"license": "BSD-3-Clause",
+	"require": {
+		"php": ">=5.3.1",
+		"qa-tools/qa-tools": "~1.0@dev",
+		"qa-tools/behat-extension": "~1.0@dev",
+		"mindplay/annotations": "~1.2@dev",
+		"behat/mink": "~1.5@dev",
+		"behat/mink-selenium2-driver": "~1.1@dev"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/qa-tools/behat-extension"
+		}
+	],
+	"autoload-dev": {
+		"psr-0": {
+			"pages": ""
+		}
+	},
+	"config": {
+		"bin-dir": "bin/"
+	}
+}

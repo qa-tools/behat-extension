@@ -14,7 +14,7 @@ namespace QATools\BehatExtension\Context;
 use Behat\Behat\Context\Context;
 use QATools\BehatExtension\QATools;
 
-class IQAToolsContext implements Context, IQAToolsAwareContext
+class QAToolsContext implements Context, IQAToolsAwareContext
 {
 
 	/**

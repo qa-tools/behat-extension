@@ -1,6 +1,5 @@
-# frontend/features/login.feature
 Feature: Login
-	In order to use our site
+	In order to use the website site
 	As a website user
 	I need to login successfully
 

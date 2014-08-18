@@ -16,7 +16,6 @@ use Behat\Mink\Session;
 use QATools\QATools\HtmlElements\TypifiedPageFactory;
 use QATools\QATools\PageObject\Config\Config;
 use QATools\QATools\PageObject\Page;
-use QATools\QATools\PageObject\PageFactory;
 
 class QATools
 {

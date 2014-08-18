@@ -2,17 +2,13 @@
 	"name": "qa-tools/behat-extension",
 	"description": "QA-Tools extension for Behat",
 	"type": "library",
-	"keywords": ["behat","bdd","page","qa-tools","PageObject","HtmlElements"],
+	"keywords": ["Behat","BDD","page","QA-Tools","PageObject","HtmlElements"],
 	"homepage": "https://github.com/qa-tools/behat-extension",
 	"license": "BSD-3-Clause",
 	"require": {
 		"php": ">=5.3.1",
-		"behat/mink-extension": "*",
+		"behat/mink-extension": "~2.0@dev",
 		"qa-tools/qa-tools": "*@dev"
-	},
-	"minimum-stability": "dev",
-	"config": {
-		"bin-dir": "bin/"
 	},
 	"require-dev": {
 		"aik099/coding-standard": "dev-master",
@@ -25,7 +21,7 @@
 	},
 	"autoload-dev": {
 		"psr-0": {
-			"QATools\\behat": "tests/"
+			"tests\\QATools\\BehatExtension": "tests/"
 		}
 	},
 	"extra": {
