@@ -1,0 +1,11 @@
+parameters:
+
+services:
+    qa_tools:
+        class:     QATools\BehatExtension\QATools
+        arguments: ["@mink", "%qa_tools.behat-extension.config%"]
+    qa_tools_initializer:
+        class:     QATools\BehatExtension\Context\Initializer\QAToolsInitializer
+        arguments: ["@qa_tools"]
+        tags:
+            - { name: context.initializer }

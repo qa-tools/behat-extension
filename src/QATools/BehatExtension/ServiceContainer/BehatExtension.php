@@ -11,20 +11,16 @@
 namespace QATools\BehatExtension\ServiceContainer;
 
 
-use Behat\Behat\Context\ServiceContainer\ContextExtension;
-use Behat\Mink\Mink;
 use Behat\Testwork\ServiceContainer\Extension;
 use Behat\Testwork\ServiceContainer\ExtensionManager;
 use QATools\BehatExtension\QATools;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class BehatExtension implements Extension
 {
-
-	const INITIALIZER_CLASS = 'QATools\\BehatExtension\\Context\\Initializer\\QAToolsInitializer';
-
 	/**
 	 * QA-Tools instance.
 	 *
@@ -87,37 +83,10 @@ class BehatExtension implements Extension
 	 */
 	public function load(ContainerBuilder $container, array $config)
 	{
-		$this->loadQATools($container, $config);
-		$this->loadInitializer($container);
-	}
+		$loader = new YamlFileLoader($container, new FileLocator(__DIR__));
+		$loader->load('config/services.yaml');
 
-	/**
-	 * Load and create QA-Tools.
-	 *
-	 * @param ContainerBuilder $container Given container builder.
-	 * @param array            $config    Config.
-	 *
-	 * @return void
-	 */
-	protected function loadQATools(ContainerBuilder $container, array $config)
-	{
-		/** @var Mink $mink */
-		$mink = $container->get('mink');
-		$this->qaTools = new QATools($mink, $config);
-	}
-
-	/**
-	 * Load initializer.
-	 *
-	 * @param ContainerBuilder $container Given container builder.
-	 *
-	 * @return void
-	 */
-	protected function loadInitializer(ContainerBuilder $container)
-	{
-		$definition = new Definition(self::INITIALIZER_CLASS, array($this->qaTools));
-		$definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));
-		$container->setDefinition('qa-tools.context_initializer', $definition);
+		$container->setParameter('qa_tools.behat-extension.config', $config);
 	}
 
 	/**
@@ -125,7 +94,6 @@ class BehatExtension implements Extension
 	 */
 	public function process(ContainerBuilder $container)
 	{
-		echo 'process';
 	}
 
 }
