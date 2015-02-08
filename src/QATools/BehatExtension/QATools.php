@@ -13,9 +13,8 @@ namespace QATools\BehatExtension;
 
 use Behat\Mink\Mink;
 use Behat\Mink\Session;
-use QATools\QATools\HtmlElements\TypifiedPageFactory;
 use QATools\QATools\PageObject\Config\Config;
-use QATools\QATools\PageObject\Page;
+use QATools\QATools\PageObject\IPageFactory;
 
 class QATools
 {
@@ -49,13 +48,6 @@ class QATools
 	protected $users = array();
 
 	/**
-	 * The current active page.
-	 *
-	 * @var Page
-	 */
-	protected $activePage;
-
-	/**
 	 * Default constructor.
 	 *
 	 * @param Mink  $mink   Mink instance.
@@ -87,40 +79,25 @@ class QATools
 	}
 
 	/**
-	 * Get page with given name.
-	 *
-	 * @param string $name Name of the page.
-	 *
-	 * @return Page
-	 */
-	public function getPage($name)
-	{
-		$class = (isset($this->config['namespace']['pages']) ?
-				'\\' . $this->config['namespace']['pages'] . '\\' : '') . $name;
-
-		$this->activePage = $this->pageFactory->getPage($class);
-
-		return $this->activePage;
-	}
-
-	/**
-	 * Get active page.
-	 *
-	 * @return Page
-	 */
-	public function getActivePage()
-	{
-		return $this->activePage;
-	}
-
-	/**
 	 * Creates a page factory.
 	 *
 	 * @return IPageFactory
 	 */
-	public function createPageFactory()
+	protected function createPageFactory()
 	{
-		return new TypifiedPageFactory($this->session, new Config($this->config['qa_tools']));
+		$page_factory = $this->config['page_factory'];
+
+		return new $page_factory($this->session, new Config($this->config['qa_tools']));
+	}
+
+	/**
+	 * Get active page factory.
+	 *
+	 * @return IPageFactory
+	 */
+	public function getPageFactory()
+	{
+		return $this->pageFactory;
 	}
 
 }

@@ -21,6 +21,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class BehatExtension implements Extension
 {
+
 	/**
 	 * QA-Tools instance.
 	 *
@@ -56,15 +57,9 @@ class BehatExtension implements Extension
 						->scalarNode('base_url')
 							->defaultNull()
 						->end()
-					->end()
-				->end()
-				->arrayNode('namespace')
-					->children()
-						->scalarNode('pages')
-							->defaultNull()
-						->end()
-						->scalarNode('elements')
-							->defaultNull()
+						->arrayNode('page_namespace_prefix')
+							->requiresAtLeastOneElement()
+							->prototype('scalar')->end()
 						->end()
 					->end()
 				->end()
@@ -74,6 +69,10 @@ class BehatExtension implements Extension
 							->scalarNode('firstname')->end()
 							->scalarNode('lastname')->end()
 						->end()
+					->end()
+				->end()
+				->scalarNode('page_factory')
+					->defaultValue('\QATools\QATools\HtmlElements\TypifiedPageFactory')
 				->end()
 			->end();
 	}
