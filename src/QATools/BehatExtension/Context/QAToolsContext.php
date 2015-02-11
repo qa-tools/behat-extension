@@ -13,6 +13,8 @@ namespace QATools\BehatExtension\Context;
 
 use Behat\Behat\Context\Context;
 use QATools\BehatExtension\QATools;
+use QATools\QATools\PageObject\IPageFactory;
+use QATools\QATools\PageObject\Page;
 
 class QAToolsContext implements Context, IQAToolsAwareContext
 {
@@ -25,15 +27,43 @@ class QAToolsContext implements Context, IQAToolsAwareContext
 	protected $qaTools;
 
 	/**
-	 * Sets the QA-Tools instance.
+	 * The used page factory.
 	 *
-	 * @param QATools $qa_tools QA-Tools instance.
+	 * @var IPageFactory
+	 */
+	protected $pageFactory;
+
+	/**
+	 * The current page.
+	 *
+	 * @var Page
+	 */
+	protected $page;
+
+	/**
+	 * Set QA-Tools instance.
+	 *
+	 * @param QATools $qa_tools Instance of QA-Tools.
 	 *
 	 * @return static
 	 */
 	public function setQATools(QATools $qa_tools)
 	{
 		$this->qaTools = $qa_tools;
+
+		return $this;
+	}
+
+	/**
+	 * Set page factory.
+	 *
+	 * @param IPageFactory $page_factory Used page factory.
+	 *
+	 * @return static
+	 */
+	public function setPageFactory(IPageFactory $page_factory)
+	{
+		$this->pageFactory = $page_factory;
 
 		return $this;
 	}
@@ -49,6 +79,8 @@ class QAToolsContext implements Context, IQAToolsAwareContext
 	{
 		$this->qaTools->init();
 
+		$this->pageFactory = $this->qaTools->getPageFactory();
+
 		return $this;
 	}
 
@@ -57,14 +89,15 @@ class QAToolsContext implements Context, IQAToolsAwareContext
 	 *
 	 * @param string $page Name of page.
 	 *
+	 * @Given /^I visit the "([^"]+)"$/
 	 * @Given /^the user visits the "([^"]+)"$/
 	 *
 	 * @return void
 	 */
 	public function visitPage($page)
 	{
-		$page = $this->qaTools->getPage($page);
-		$page->open();
+		$this->page = $this->pageFactory->getPage($page);
+		$this->page->open();
 	}
 
 }

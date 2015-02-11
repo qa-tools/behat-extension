@@ -7,8 +7,10 @@
 	"license": "BSD-3-Clause",
 	"require": {
 		"php": ">=5.3.1",
-		"behat/mink-extension": "~2.0@dev",
-		"qa-tools/qa-tools": "*@dev"
+		"behat/mink-extension": "~2.0",
+		"qa-tools/qa-tools": "~1.0@dev",
+		"mindplay/annotations": "~1.2@dev",
+		"symfony/yaml": "2.6.4"
 	},
 	"require-dev": {
 		"aik099/coding-standard": "dev-master",
